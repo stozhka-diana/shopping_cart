@@ -1,0 +1,134 @@
+[
+  {
+    "model": "products.category",
+    "pk": 1,
+    "fields": {
+      "name": "Clothes",
+      "parent_category": null,
+      "lft": 1,
+      "rght": 8,
+      "tree_id": 2,
+      "level": 0
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 2,
+    "fields": {
+      "name": "T-shirts",
+      "parent_category": 1,
+      "lft": 6,
+      "rght": 7,
+      "tree_id": 2,
+      "level": 1
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 3,
+    "fields": {
+      "name": "Pants",
+      "parent_category": 1,
+      "lft": 2,
+      "rght": 5,
+      "tree_id": 2,
+      "level": 1
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 4,
+    "fields": {
+      "name": "Books",
+      "parent_category": null,
+      "lft": 1,
+      "rght": 12,
+      "tree_id": 1,
+      "level": 0
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 5,
+    "fields": {
+      "name": "Classics",
+      "parent_category": 4,
+      "lft": 2,
+      "rght": 11,
+      "tree_id": 1,
+      "level": 1
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 6,
+    "fields": {
+      "name": "Russian",
+      "parent_category": 5,
+      "lft": 7,
+      "rght": 8,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 7,
+    "fields": {
+      "name": "English",
+      "parent_category": 5,
+      "lft": 3,
+      "rght": 4,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 8,
+    "fields": {
+      "name": "Jeans",
+      "parent_category": 3,
+      "lft": 3,
+      "rght": 4,
+      "tree_id": 2,
+      "level": 2
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+      "name": "War and Peace",
+      "slug": "war-and-peace",
+      "description": "War and Peace is a literary work by the Russian author Leo Tolstoy that mixes fictional narrative with chapters on history and philosophy.",
+      "category": 6,
+      "price": 500.0,
+      "rating": 4.5
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 3,
+    "fields": {
+      "name": "Lord of the Flies",
+      "slug": "lord-of-the-flies",
+      "description": "The plot concerns a group of British boys who are stranded on an uninhabited island and their disastrous attempts to govern themselves.",
+      "category": 7,
+      "price": 350.0,
+      "rating": 4.3
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 4,
+    "fields": {
+      "name": "Standard denim",
+      "slug": "standard-denim",
+      "description": "Denim jeans are identified with American culture especially the cowboy westerns.",
+      "category": 8,
+      "price": 200.0,
+      "rating": 4.0
+    }
+  }
+]

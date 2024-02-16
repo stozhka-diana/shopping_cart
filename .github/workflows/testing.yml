@@ -1,0 +1,58 @@
+name: Testing
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '**'
+      - '!**.md'
+      - '!scripts/**'
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+    
+    env:
+      POSTGRES_USER: test_admin
+      POSTGRES_PASSWORD: qwerty
+      POSTGRES_DB: test_db
+    
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: ${{ env.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
+          POSTGRES_DB: ${{ env.POSTGRES_DB }}
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 3
+    
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v3
+      - name: Setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.dev.txt
+      - name: Run flake8
+        run: flake8
+      - name: Run tests
+        env:
+          DEBUG: 0
+          POSTGRES_HOST: 127.0.0.1
+          POSTGRES_PORT: 5432
+          POSTGRES_USER: ${{ env.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
+          POSTGRES_DB: ${{ env.POSTGRES_DB }}
+        run: |
+          cd ./shopping_cart_api
+          python manage.py migrate
+          python manage.py loaddata products
+          pytest
